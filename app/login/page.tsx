@@ -11,7 +11,6 @@ const INITIAL_STATE: RegisterState = {
   email: 'hoge@email.com',
   zodErrors: null,
   registerErrors: null,
-  message: '',
 };
 
 export default function Login() {
