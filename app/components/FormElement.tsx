@@ -1,9 +1,10 @@
 import { Input } from './ui/input';
+import { ZodErrors } from './ZodErrors';
 
 export const FormElement = ({
   item,
   data = '',
-  // errors = [],
+  errors = [],
 }: {
   item: string;
   data?: string;
@@ -19,7 +20,7 @@ export const FormElement = ({
         defaultValue={data}
         className="border border-gray-300 rounded-md text-white-700 bg-zinc-700"
       />
-      {/* {errors && <ZodErrors error={errors} />} */}
+      {errors && <ZodErrors error={errors} />}
     </div>
   );
 };
