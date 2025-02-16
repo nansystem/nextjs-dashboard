@@ -1,20 +1,18 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
-
 interface ButtonProps {
   text: string;
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
+  pending?: boolean;
 }
 
 export default function Button({
   text,
   type = 'submit',
   onClick,
+  pending,
 }: ButtonProps) {
-  const { pending } = useFormStatus();
-
   return (
     <button
       type={type}
