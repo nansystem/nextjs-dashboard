@@ -8,10 +8,10 @@ import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
 
 export default async function Page(props: {
-  searchParams?: Promise<{ 
-    query?: string
-    page?: string
-   }>;
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
@@ -27,7 +27,7 @@ export default async function Page(props: {
         <Search placeholder="Search invoices..." />
         <CreateInvoice />
       </div>
-       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">

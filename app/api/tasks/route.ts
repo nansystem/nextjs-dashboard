@@ -21,28 +21,34 @@ export async function POST(request: Request) {
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
-    const taskId = parseInt(params.id, 10);
-    const index = tasks.findIndex(t => t.id === taskId);
-    if (index === -1) {
-      return NextResponse.json({ error: 'Task not found' }, { status: 404 });
-    }
-    try {
-      const data = await request.json();
-      // 既存タスクの内容を更新
-      tasks[index] = { ...tasks[index], ...data };
-      return NextResponse.json(tasks[index]);
-    } catch ({}) {
-      return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
-    }
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const taskId = parseInt(params.id, 10);
+  const index = tasks.findIndex(t => t.id === taskId);
+  if (index === -1) {
+    return NextResponse.json({ error: 'Task not found' }, { status: 404 });
   }
-  
-  export async function DELETE(request: Request, { params }: { params: { id: string } }) {
-    const taskId = parseInt(params.id, 10);
-    const index = tasks.findIndex(t => t.id === taskId);
-    if (index === -1) {
-      return NextResponse.json({ error: 'Task not found' }, { status: 404 });
-    }
-    const deletedTask = tasks.splice(index, 1)[0];
-    return NextResponse.json({ message: 'Task deleted', task: deletedTask });
+  try {
+    const data = await request.json();
+    // 既存タスクの内容を更新
+    tasks[index] = { ...tasks[index], ...data };
+    return NextResponse.json(tasks[index]);
+  } catch ({}) {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const taskId = parseInt(params.id, 10);
+  const index = tasks.findIndex(t => t.id === taskId);
+  if (index === -1) {
+    return NextResponse.json({ error: 'Task not found' }, { status: 404 });
+  }
+  const deletedTask = tasks.splice(index, 1)[0];
+  return NextResponse.json({ message: 'Task deleted', task: deletedTask });
 }

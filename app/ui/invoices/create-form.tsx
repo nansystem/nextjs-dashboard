@@ -1,6 +1,6 @@
 'use client';
 
-import {useActionState} from 'react';
+import { useActionState } from 'react';
 import { CustomerField } from '@/app/lib/definitions';
 import Link from 'next/link';
 import {
@@ -12,7 +12,7 @@ import {
 import { Button } from '@/app/ui/button';
 import { createInvoice, State } from '@/app/lib/actions';
 export default function Form({ customers }: { customers: CustomerField[] }) {
-  const initialState: State = {message: null, errors: {}};
+  const initialState: State = { message: null, errors: {} };
   const [state, formAction] = useActionState(createInvoice, initialState);
   return (
     <form action={formAction}>
@@ -33,7 +33,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               <option value="" disabled>
                 Select a customer
               </option>
-              {customers.map((customer) => (
+              {customers.map(customer => (
                 <option key={customer.id} value={customer.id}>
                   {customer.name}
                 </option>
@@ -42,12 +42,17 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
           {state.errors?.customerId && (
-              <div id="customer-error" aria-live="polite" aria-atomic="true" className="mt-2 text-sm text-red-500">
-                {state.errors.customerId.map((error: string) => (
-                  <p key={error}>{error}</p>
-                ))}
-              </div>
-            )}
+            <div
+              id="customer-error"
+              aria-live="polite"
+              aria-atomic="true"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.customerId.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Invoice Amount */}
@@ -70,12 +75,17 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             </div>
           </div>
           {state.errors?.amount && (
-              <div id="amount-error" aria-live="polite" aria-atomic="true" className="mt-2 text-sm text-red-500">
-                {state.errors.amount.map((error: string) => (
-                  <p key={error}>{error}</p>
-                ))}
-              </div>
-            )}
+            <div
+              id="amount-error"
+              aria-live="polite"
+              aria-atomic="true"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.amount.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Invoice Status */}
@@ -119,12 +129,17 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           </div>
         </fieldset>
         {state.errors?.status && (
-              <div id="status-error" aria-live="polite" aria-atomic="true" className="mt-2 text-sm text-red-500">
-                {state.errors.status.map((error: string) => (
-                  <p key={error}>{error}</p>
-                ))}
-              </div>
-            )}
+          <div
+            id="status-error"
+            aria-live="polite"
+            aria-atomic="true"
+            className="mt-2 text-sm text-red-500"
+          >
+            {state.errors.status.map((error: string) => (
+              <p key={error}>{error}</p>
+            ))}
+          </div>
+        )}
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
